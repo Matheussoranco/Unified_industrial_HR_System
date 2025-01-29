@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Clock, Users as Servings, ChefHat, Search, Calendar, Heart, MessageCircle, Share2 } from 'lucide-react';
+import { Dialog } from '@headlessui/react';
 
 function Recipes() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="space-y-8">
-      <header>
-        <h1 className="text-3xl font-bold text-gray-800">Receitas Saudáveis</h1>
-        <p className="text-gray-600 mt-2">Descubra receitas nutritivas e deliciosas</p>
+      <header className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-800">Receitas Saudáveis</h1>
+          <p className="text-gray-600 mt-2">Descubra receitas nutritivas e deliciosas</p>
+        </div>
+        <MonteSeuPrato
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+        />
       </header>
 
       {/* Search Bar */}
@@ -25,7 +33,7 @@ function Recipes() {
           <h2 className="text-2xl font-semibold text-gray-800">Cardápio da Semana</h2>
           <div className="flex items-center space-x-2 text-purple-600">
             <Calendar className="w-5 h-5" />
-            <span>15-21 Março</span>
+            <span>27-31 Janeiro</span>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -225,5 +233,85 @@ function RecipeCard({ title, image, time, servings, chef, difficulty }: {
     </div>
   );
 }
+
+function MonteSeuPrato({ isModalOpen, setIsModalOpen }) {
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+
+  const ingredients = [
+    'Arroz',
+    'Feijão',
+    'Frango Grelhado',
+    'Peixe',
+    'Legumes',
+    'Salada',
+    'Batata Doce',
+    'Purê de Mandioca',
+  ];
+
+  const toggleIngredient = (ingredient) => {
+    setSelectedIngredients((prev) =>
+      prev.includes(ingredient)
+        ? prev.filter((item) => item !== ingredient)
+        : [...prev, ingredient]
+    );
+  };
+
+  return (
+    <div>
+      <button
+        className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
+        onClick={() => setIsModalOpen(true)}
+      >
+        Monte seu prato
+      </button>
+
+      {/* Modal */}
+      <Dialog open={isModalOpen} onClose={() => setIsModalOpen(false)} className="relative z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50" />
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
+            <Dialog.Title className="text-lg font-bold text-gray-800 mb-4">
+              Monte seu prato
+            </Dialog.Title>
+
+            <ul className="space-y-2">
+              {ingredients.map((ingredient) => (
+                <li key={ingredient} className="flex items-center justify-between">
+                  <span className="text-gray-800">{ingredient}</span>
+                  <button
+                    className={`${
+                      selectedIngredients.includes(ingredient)
+                        ? 'bg-purple-600 text-white'
+                        : 'bg-gray-200 text-gray-800'
+                    } px-3 py-1 rounded-lg`}
+                    onClick={() => toggleIngredient(ingredient)}
+                  >
+                    {selectedIngredients.includes(ingredient) ? 'Remover' : 'Adicionar'}
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-6 flex justify-end space-x-4">
+              <button
+                className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancelar
+              </button>
+              <button
+                className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Confirmar
+              </button>
+            </div>
+          </Dialog.Panel>
+        </div>
+      </Dialog>
+    </div>
+  );
+}
+
 
 export default Recipes;

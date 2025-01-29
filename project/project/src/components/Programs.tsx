@@ -1,7 +1,11 @@
-import React from 'react';
-import { Calendar, Trophy, Users, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, Trophy, Users, ArrowRight, X } from 'lucide-react';
 
 function Programs() {
+  const [selectedProgram, setSelectedProgram] = useState<string | null>(null);
+
+  const closeModal = () => setSelectedProgram(null);
+
   return (
     <div className="space-y-6">
       <header>
@@ -17,6 +21,7 @@ function Programs() {
           participants={45}
           duration="8 semanas"
           nextSession="Terça, 15:00"
+          onParticipate={() => setSelectedProgram("Mover para Cuidar")}
         />
         <ProgramCard
           title="Rato de Academia"
@@ -25,6 +30,7 @@ function Programs() {
           participants={32}
           duration="12 semanas"
           nextSession="Quinta, 17:00"
+          onParticipate={() => setSelectedProgram("Rato de Academia")}
         />
       </div>
 
@@ -51,17 +57,41 @@ function Programs() {
           />
         </div>
       </div>
+
+      {selectedProgram && (
+        <Modal title={`Participar de ${selectedProgram}`} onClose={closeModal}>
+          <p className="text-gray-600">Você está prestes a se inscrever no programa <strong>{selectedProgram}</strong>. Tem certeza de que deseja continuar?</p>
+          <div className="flex justify-end space-x-4 mt-6">
+            <button
+              className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+              onClick={closeModal}
+            >
+              Cancelar
+            </button>
+            <button
+              className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+              onClick={() => {
+                alert(`Você se inscreveu no programa: ${selectedProgram}`);
+                closeModal();
+              }}
+            >
+              Confirmar
+            </button>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }
 
-function ProgramCard({ title, description, image, participants, duration, nextSession }: {
+function ProgramCard({ title, description, image, participants, duration, nextSession, onParticipate }: {
   title: string;
   description: string;
   image: string;
   participants: number;
   duration: string;
   nextSession: string;
+  onParticipate: () => void;
 }) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -90,11 +120,34 @@ function ProgramCard({ title, description, image, participants, duration, nextSe
           <span className="text-sm text-purple-600 font-medium">
             Próxima sessão: {nextSession}
           </span>
-          <button className="flex items-center space-x-2 text-purple-600 hover:text-purple-700">
+          <button
+            className="flex items-center space-x-2 text-purple-600 hover:text-purple-700"
+            onClick={onParticipate}
+          >
             <span>Participar</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function Modal({ title, children, onClose }: {
+  title: string;
+  children: React.ReactNode;
+  onClose: () => void;
+}) {
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-bold text-gray-800">{title}</h3>
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        {children}
       </div>
     </div>
   );
