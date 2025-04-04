@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Activity, Users, ChefHat, Trophy, Home, UserCircle, LogOut } from 'lucide-react';
-
+import { Activity, Users, ChefHat, Trophy, Home, UserCircle, LogOut, Briefcase } from 'lucide-react';
+ 
 function Navbar() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user') || '{}');
-
+ 
   const handleLogout = () => {
     localStorage.removeItem('user');
     navigate('/login');
   };
-
+ 
   return (
     <nav className="bg-white shadow-lg">
       <div className="container mx-auto px-4">
@@ -19,14 +19,15 @@ function Navbar() {
             <Activity className="h-8 w-8 text-purple-600" />
             <span className="text-xl font-bold text-gray-800">Move on</span>
           </Link>
-          
+         
           <div className="flex items-center space-x-6">
             <NavLink to="/" icon={<Home />} text="Dashboard" />
             <NavLink to="/health-tracker" icon={<Activity />} text="Saúde" />
             <NavLink to="/community" icon={<Users />} text="Comunidade" />
             <NavLink to="/recipes" icon={<ChefHat />} text="Receitas" />
             <NavLink to="/programs" icon={<Trophy />} text="Programas" />
-            
+            <NavLink to="/humanresources" icon={<Briefcase />} text="Recursos Humanos" />
+           
             {user.name ? (
               <div className="relative group">
                 <button className="flex items-center space-x-2 text-gray-600 hover:text-purple-600">
@@ -68,7 +69,7 @@ function Navbar() {
     </nav>
   );
 }
-
+ 
 function NavLink({ to, icon, text }: { to: string; icon: React.ReactNode; text: string }) {
   return (
     <Link
@@ -80,5 +81,5 @@ function NavLink({ to, icon, text }: { to: string; icon: React.ReactNode; text: 
     </Link>
   );
 }
-
+ 
 export default Navbar;

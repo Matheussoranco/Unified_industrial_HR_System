@@ -1,18 +1,14 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import HealthTracker from './components/HealthTracker';
 import Community from './components/Community';
 import Recipes from './components/Recipes';
 import Programs from './components/Programs';
-import Login from './components/Login';
 import Profile from './components/Profile';
-
-function PrivateRoute({ children }: { children: React.ReactNode }) {
-  const user = localStorage.getItem('user');
-  return user ? <>{children}</> : <Navigate to="/login" />;
-}
+import Login from './components/Login';
+import HumanResources from './components/HumanResources';
 
 function App() {
   return (
@@ -20,55 +16,14 @@ function App() {
       <Navbar />
       <main className="container mx-auto px-4 py-8">
         <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/health-tracker" element={<HealthTracker />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/recipes" element={<Recipes />} />
+          <Route path="/programs" element={<Programs />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/health-tracker"
-            element={
-              <PrivateRoute>
-                <HealthTracker />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/community"
-            element={
-              <PrivateRoute>
-                <Community />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/recipes"
-            element={
-              <PrivateRoute>
-                <Recipes />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/programs"
-            element={
-              <PrivateRoute>
-                <Programs />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <PrivateRoute>
-                <Profile />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/humanresources" element={<HumanResources />} />
         </Routes>
       </main>
     </div>

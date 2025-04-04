@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Clock, Users as Servings, ChefHat, Search, Calendar, Heart, MessageCircle, Share2 } from 'lucide-react';
-import { Dialog } from '@headlessui/react';
+//import { Dialog } from '@headlessui/react';
 
 function Recipes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -264,51 +264,6 @@ function MonteSeuPrato({ isModalOpen, setIsModalOpen }) {
       >
         Monte seu prato
       </button>
-
-      {/* Modal */}
-      <Dialog open={isModalOpen} onClose={() => setIsModalOpen(false)} className="relative z-50">
-        <div className="fixed inset-0 bg-black bg-opacity-50" />
-        <div className="fixed inset-0 flex items-center justify-center p-4">
-          <Dialog.Panel className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
-            <Dialog.Title className="text-lg font-bold text-gray-800 mb-4">
-              Monte seu prato
-            </Dialog.Title>
-
-            <ul className="space-y-2">
-              {ingredients.map((ingredient) => (
-                <li key={ingredient} className="flex items-center justify-between">
-                  <span className="text-gray-800">{ingredient}</span>
-                  <button
-                    className={`${
-                      selectedIngredients.includes(ingredient)
-                        ? 'bg-purple-600 text-white'
-                        : 'bg-gray-200 text-gray-800'
-                    } px-3 py-1 rounded-lg`}
-                    onClick={() => toggleIngredient(ingredient)}
-                  >
-                    {selectedIngredients.includes(ingredient) ? 'Remover' : 'Adicionar'}
-                  </button>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-6 flex justify-end space-x-4">
-              <button
-                className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300"
-                onClick={() => setIsModalOpen(false)}
-              >
-                Cancelar
-              </button>
-              <button
-                className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
-                onClick={() => setIsModalOpen(false)}
-              >
-                Confirmar
-              </button>
-            </div>
-          </Dialog.Panel>
-        </div>
-      </Dialog>
     </div>
   );
 }
