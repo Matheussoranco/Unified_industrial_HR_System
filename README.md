@@ -66,22 +66,20 @@ Move On é uma plataforma abrangente de bem-estar corporativo projetada para pro
 
     http://localhost:3000
 
-📂 Estrutura de Arquivos
-Copy
+### 📂 Estrutura de Arquivos
+   src/
+   ├── components/
+   │   ├── Community.tsx       # Página da comunidade
+   │   ├── Dashboard.tsx       # Dashboard principal
+   │   ├── HealthTracker.tsx   # Acompanhamento de saúde
+   │   ├── HumanResources.tsx  # Recursos Humanos
+   │   ├── Login.tsx           # Tela de login
+   │   ├── Navbar.tsx          # Barra de navegação
+   │   ├── Profile.tsx         # Perfil do usuário
+   │   ├── Programs.tsx        # Programas corporativos
+   │   ├── Recipes.tsx         # Receitas saudáveis
+   │   └── Streak.tsx          # Sistema de streaks
 
-src/
-├── components/
-│   ├── Community.tsx       # Página da comunidade
-│   ├── Dashboard.tsx       # Dashboard principal
-│   ├── HealthTracker.tsx   # Acompanhamento de saúde
-│   ├── HumanResources.tsx  # Recursos Humanos
-│   ├── Login.tsx           # Tela de login
-│   ├── Navbar.tsx          # Barra de navegação
-│   ├── Profile.tsx         # Perfil do usuário
-│   ├── Programs.tsx        # Programas corporativos
-│   ├── Recipes.tsx         # Receitas saudáveis
-│   └── Streak.tsx          # Sistema de streaks
 
-📝 Licença
-
-Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para detalhes.
+### 📝 Licença
+Este projeto está licenciado sob a licença AGPL 3.0 - veja o arquivo LICENSE para detalhes.
