@@ -50,23 +50,16 @@ Move On é uma plataforma abrangente de bem-estar corporativo projetada para pro
    git clone https://github.com/seu-usuario/move-on.git
 
     Instale as dependências:
-    bash
-    Copy
-
     npm install
 
     Inicie o servidor de desenvolvimento:
-    bash
-    Copy
-
     npm start
 
     Acesse no navegador:
-    Copy
-
     http://localhost:3000
 
-### 📂 Estrutura de Arquivos
+### 📂 Estrutura de Arquivos 
+   ```bash
    src/
    ├── components/
    │   ├── Community.tsx       # Página da comunidade
@@ -79,7 +72,6 @@ Move On é uma plataforma abrangente de bem-estar corporativo projetada para pro
    │   ├── Programs.tsx        # Programas corporativos
    │   ├── Recipes.tsx         # Receitas saudáveis
    │   └── Streak.tsx          # Sistema de streaks
-
-
+```
 ### 📝 Licença
 Este projeto está licenciado sob a licença AGPL 3.0 - veja o arquivo LICENSE para detalhes.
