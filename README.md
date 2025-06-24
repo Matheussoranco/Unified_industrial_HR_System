@@ -91,3 +91,8 @@ Este projeto está licenciado sob a licença AGPL 3.0 - veja o arquivo LICENSE p
 - [ ] Documentar API e fluxos principais
 - [ ] Criar deploy automatizado (CI/CD)
 - [ ] Adicionar exemplos de uso para cada componente
+
+
+
+## Termination
+Infelizmente, por falta de apoio corporativo e mundaças na situação de trabalho, o projeto foi descontinuado. Sinta-se a vontade para baixar o projeto, corrigí-lo e alterá-lo.
