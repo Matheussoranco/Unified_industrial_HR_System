@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, Calendar, Briefcase, ArrowRight } from 'lucide-react';
+import { Users, Briefcase, ArrowRight } from 'lucide-react';
  
 function HumanResources() {
   const [activeTab, setActiveTab] = useState<'acompanhamento' | 'convenios'>('convenios');

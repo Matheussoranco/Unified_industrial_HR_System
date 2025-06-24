@@ -234,36 +234,21 @@ function RecipeCard({ title, image, time, servings, chef, difficulty }: {
   );
 }
 
-function MonteSeuPrato({ isModalOpen, setIsModalOpen }) {
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
-
-  const ingredients = [
-    'Arroz',
-    'Feijão',
-    'Frango Grelhado',
-    'Peixe',
-    'Legumes',
-    'Salada',
-    'Batata Doce',
-    'Purê de Mandioca',
-  ];
-
-  const toggleIngredient = (ingredient) => {
-    setSelectedIngredients((prev) =>
-      prev.includes(ingredient)
-        ? prev.filter((item) => item !== ingredient)
-        : [...prev, ingredient]
-    );
-  };
-
+function MonteSeuPrato({ isModalOpen, setIsModalOpen }: { isModalOpen: boolean; setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
+  // TODO: Implement modal and ingredient selection logic using isModalOpen and setIsModalOpen
   return (
     <div>
-      <button
-        className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
-        onClick={() => setIsModalOpen(true)}
-      >
-        Monte seu prato
-      </button>
+      <button onClick={() => setIsModalOpen(true)} className="bg-purple-600 text-white px-4 py-2 rounded">Montar Prato</button>
+      {/* Modal placeholder */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded shadow-lg">
+            <h2 className="text-xl font-bold mb-4">Monte seu prato</h2>
+            <p>Funcionalidade em desenvolvimento.</p>
+            <button onClick={() => setIsModalOpen(false)} className="mt-4 bg-gray-300 px-4 py-2 rounded">Fechar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Activity, Users, ChefHat, Trophy, Home, UserCircle, LogOut, Briefcase } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
  
 function Navbar() {
+  const { i18n } = useTranslation();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user') || '{}');
  
@@ -64,6 +66,9 @@ function Navbar() {
               </Link>
             )}
           </div>
+          <button onClick={() => i18n.changeLanguage(i18n.language === 'pt' ? 'en' : 'pt')} className="ml-4 px-2 py-1 bg-gray-200 rounded">
+            {i18n.language === 'pt' ? 'EN' : 'PT'}
+          </button>
         </div>
       </div>
     </nav>

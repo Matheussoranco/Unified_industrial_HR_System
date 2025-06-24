@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
 import { Activity, Brain, Heart, Weight, Apple, Droplets, Coffee, Target } from 'lucide-react';
+import axios from 'axios';
+import { useTranslation } from 'react-i18next';
+
+interface HealthMetrics {
+  heartRate: number;
+  weight: number;
+  activities: string[];
+}
+
 function HealthTracker() {
-const [activeTab, setActiveTab] = useState('nutrition');
-return (
+  const { t } = useTranslation();
+  const [activeTab, setActiveTab] = useState('nutrition');
+  const [metrics, setMetrics] = useState<HealthMetrics | null>(null);
+  React.useEffect(() => {
+    axios.get<HealthMetrics>('http://localhost:4000/api/health-metrics').then((res) => setMetrics(res.data));
+  }, []);
+  return (
 <div className="space-y-6">
    <header>
       <h1 className="text-3xl font-bold text-gray-800">Acompanhamento de Saúde</h1>
@@ -45,6 +59,18 @@ return (
       <Nutrition />
       }
    </div>
+   <div>
+      <h2 className="text-xl font-bold">{t('Métricas de Saúde')}</h2>
+      {metrics ? (
+        <ul>
+          <li>{t('Frequência Cardíaca')}: {metrics.heartRate}</li>
+          <li>{t('Peso')}: {metrics.weight} kg</li>
+          <li>{t('Atividades')}: {metrics.activities.join(', ')}</li>
+        </ul>
+      ) : (
+        <p>{t('Carregando métricas...')}</p>
+      )}
+    </div>
 </div>
 );
 }
@@ -112,7 +138,7 @@ return (
 function MentalHealth() {
 const [selectedEmoji, setSelectedEmoji] = useState("");
 const [isInsideModalOpen, setIsInsideModalOpen] = useState(false);
-const handleEmojiClick = (emoji) => {
+const handleEmojiClick = (emoji: string) => {
 setSelectedEmoji(emoji);
 setTimeout(() => {
 setSelectedEmoji("");
@@ -229,7 +255,7 @@ return (
             <div>
                <label className="block text-sm font-medium">Comentários</label>
                <textarea
-                  rows="4"
+                  rows={4}
                   className="w-full mt-1 p-2 border rounded-lg focus:ring focus:ring-blue-300"
                   ></textarea>
             </div>

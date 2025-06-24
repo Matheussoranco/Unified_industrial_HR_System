@@ -1,6 +1,6 @@
-# Move On - Plataforma de Bem-estar Corporativo
+# Impulse Wellness Platform - Plataforma de Bem-estar Corporativo
 
-Move On é uma plataforma abrangente de bem-estar corporativo projetada para promover saúde física, mental e nutricional dos colaboradores através de programas personalizados, acompanhamento de métricas e uma comunidade engajada.
+Impulse Wellness Platform (anteriormente Move On) é uma plataforma abrangente de bem-estar corporativo projetada para promover saúde física, mental e nutricional dos colaboradores através de programas personalizados, acompanhamento de métricas e uma comunidade engajada.
 
 ## ✨ Funcionalidades Principais
 
@@ -47,31 +47,47 @@ Move On é uma plataforma abrangente de bem-estar corporativo projetada para pro
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/move-on.git
-
-    Instale as dependências:
-    npm install
-
-    Inicie o servidor de desenvolvimento:
-    npm start
-
-    Acesse no navegador:
-    http://localhost:3000
-
-### 📂 Estrutura de Arquivos 
+   git clone https://github.com/SEU-USUARIO/impulse-wellness-platform.git
+   ```
+2. Instale as dependências:
    ```bash
-   src/
-   ├── components/
-   │   ├── Community.tsx       # Página da comunidade
-   │   ├── Dashboard.tsx       # Dashboard principal
-   │   ├── HealthTracker.tsx   # Acompanhamento de saúde
-   │   ├── HumanResources.tsx  # Recursos Humanos
-   │   ├── Login.tsx           # Tela de login
-   │   ├── Navbar.tsx          # Barra de navegação
-   │   ├── Profile.tsx         # Perfil do usuário
-   │   ├── Programs.tsx        # Programas corporativos
-   │   ├── Recipes.tsx         # Receitas saudáveis
-   │   └── Streak.tsx          # Sistema de streaks
+   cd Unified_industrial_HR_System/project
+   npm install
+   ```
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm start
+   ```
+4. Acesse no navegador:
+   http://localhost:3000
+
+### 📂 Estrutura de Arquivos
+```bash
+src/
+├── components/
+│   ├── Community.tsx       # Página da comunidade
+│   ├── Dashboard.tsx       # Dashboard principal
+│   ├── HealthTracker.tsx   # Acompanhamento de saúde
+│   ├── HumanResources.tsx  # Recursos Humanos
+│   ├── Login.tsx           # Tela de login
+│   ├── Navbar.tsx          # Barra de navegação
+│   ├── Profile.tsx         # Perfil do usuário
+│   ├── Programs.tsx        # Programas corporativos
+│   ├── Recipes.tsx         # Receitas saudáveis
+│   └── Streak.tsx          # Sistema de streaks
 ```
+
 ### 📝 Licença
 Este projeto está licenciado sob a licença AGPL 3.0 - veja o arquivo LICENSE para detalhes.
+
+---
+
+## 📋 To Do
+- [ ] Implementar autenticação real (OAuth, SSO, etc.)
+- [ ] Integrar backend para métricas de saúde e programas
+- [ ] Adicionar testes unitários e de integração
+- [ ] Melhorar responsividade mobile
+- [ ] Internacionalização (i18n) para outros idiomas
+- [ ] Documentar API e fluxos principais
+- [ ] Criar deploy automatizado (CI/CD)
+- [ ] Adicionar exemplos de uso para cada componente

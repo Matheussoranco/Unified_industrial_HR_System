@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Streak = () => {
   const [streak, setStreak] = useState(0);
@@ -33,7 +33,7 @@ const Streak = () => {
     // Atualizar o último login
     localStorage.setItem('lastLogin', today.toISOString());
     setLastLogin(today);
-  }, [lastLogin]);
+  }, [lastLogin, streak]);
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">

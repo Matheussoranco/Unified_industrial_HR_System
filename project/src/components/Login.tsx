@@ -1,8 +1,11 @@
-import React from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogIn, Box } from 'lucide-react';
+import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import jwt_decode from 'jwt-decode';
  
 function Login() {
+  const [user, setUser] = useState<any>(null);
   const navigate = useNavigate();
  
   const handleMicrosoftLogin = () => {
@@ -26,13 +29,40 @@ function Login() {
           <p className="text-gray-600 mt-2">Entre com sua conta corporativa</p>
         </div>
  
-        <button
-          onClick={handleMicrosoftLogin}
-          className="w-full flex items-center justify-center space-x-2 bg-[#2F2F2F] text-white px-4 py-3 rounded-lg hover:bg-[#1F1F1F] transition-colors"
-        >
-          <Box className="w-5 h-5" />
-          <span>Entrar com Microsoft</span>
-        </button>
+        {user ? (
+          <div className="text-center">
+            <p className="text-gray-800">Bem-vindo, {user.name}</p>
+            <img src={user.picture} alt="avatar" className="rounded-full w-16 h-16 mx-auto" />
+            <button
+              onClick={() => { setUser(null); googleLogout(); }}
+              className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
+            >
+              Sair
+            </button>
+          </div>
+        ) : (
+          <>
+            <button
+              onClick={handleMicrosoftLogin}
+              className="w-full flex items-center justify-center space-x-2 bg-[#2F2F2F] text-white px-4 py-3 rounded-lg hover:bg-[#1F1F1F] transition-colors"
+            >
+              <Box className="w-5 h-5" />
+              <span>Entrar com Microsoft</span>
+            </button>
+ 
+            <div className="mt-4">
+              <GoogleLogin
+                onSuccess={credentialResponse => {
+                  if (credentialResponse.credential) {
+                    const decoded: any = (jwt_decode as any)(credentialResponse.credential);
+                    setUser(decoded);
+                  }
+                }}
+                onError={() => alert('Login falhou!')}
+              />
+            </div>
+          </>
+        )}
  
         <div className="mt-6 text-center text-sm text-gray-600">
   <p>Use sua conta corporativa para acessar a plataforma.</p>
